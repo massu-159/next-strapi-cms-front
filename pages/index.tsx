@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
+import { Food } from "../interfaces/Food";
 
 export async function getStaticProps() {
   const foodsData = (await axios.get("http://127.0.0.1:1337/api/foods/")).data.data;
@@ -11,15 +12,6 @@ export async function getStaticProps() {
       foods: foodsData,
     },
   };
-}
-
-interface Food {
-  id: number;
-  attributes: {
-    foodName: string;
-    description: string;
-    price: number;
-  }
 }
 
 const Home: NextPage = ({ foods }: any) => {
